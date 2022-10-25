@@ -100,7 +100,6 @@ function Attendance() {
 }
 
 function App() {
-  //return <Counter />;
   return <Attendance />;
 }
 
