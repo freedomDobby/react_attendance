@@ -1,23 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import React, { useState } from "react";
-
-// function Counter() {
-//   const [number, setNumber] = useState(0);
-
-//   const onIncrease = () => {
-//     setNumber(number + 1);
-//   };
-//   const onDecrease = () => {
-//     setNumber(number - 1);
-//   };
-//   return (
-//     <div>
-//       <h1>{number}</h1>
-//       <button onClick={onIncrease}>+1</button>
-//       <button onClick={onDecrease}>-1</button>
-//     </div>
-//   );
-// }
+import React from "react";
 
 function Item(props) {
   console.log(props);
@@ -57,6 +39,21 @@ function Attendance() {
     console.log(cloneStudent[clickIndex].attendace);
   };
 
+  const saveProcessing = () => {
+    const cloneStudent = [...student];
+    cloneStudent.push({
+      name: text,
+      attendace: false,
+    });
+    setStudent(cloneStudent);
+  };
+
+  const resetProcess = () => {
+    setText("");
+  };
+
+  const [text, setText] = React.useState("");
+
   return (
     <div>
       <table border={1}>
@@ -80,12 +77,29 @@ function Attendance() {
           })}
         </tbody>
       </table>
+      <input
+        value={text}
+        type="text"
+        className="addStudent"
+        onChange={(event) => {
+          console.log(event.target.value);
+          setText(event.target.value);
+        }}
+      />
+      <button
+        type="button"
+        onClick={() => {
+          saveProcessing();
+          resetProcess();
+        }}
+      >
+        Save
+      </button>
     </div>
   );
 }
 
 function App() {
-  //return <Counter />;
   return <Attendance />;
 }
 
